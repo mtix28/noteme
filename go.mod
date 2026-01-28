@@ -1,4 +1,4 @@
-module noteme
+module github.com/mtix28/noteme
 
 go 1.25.5
 
