@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
+	"time"
 	"noteme/model"
 )
 
@@ -32,7 +33,20 @@ func NewStorage() (*Storage, error) {
 func (s *Storage) LoadNotes() ([]model.Note, error) {
 	path := filepath.Join(s.basePath, NotesFile)
     if _, err := os.Stat(path); os.IsNotExist(err) {
-        return []model.Note{}, nil
+        // Seed default note
+        defaultNotes := []model.Note{
+            {
+                ID:        "welcome-note",
+                Title:     "Welcome to NoteMe!",
+                Content:   "This is your first note.\n\n- Press 'Enter' to edit this note.\n- Press 'n' to create a new one.\n- Press 'd' to delete.\n\nEnjoy using NoteMe!",
+                Folder:    "General",
+                CreatedAt: time.Now(),
+            },
+        }
+        if err := s.SaveNotes(defaultNotes); err != nil {
+            return nil, err
+        }
+        return defaultNotes, nil
     }
 	data, err := os.ReadFile(path)
 	if err != nil {
@@ -80,7 +94,20 @@ func (s *Storage) DeleteNote(id string) error {
 func (s *Storage) LoadTodos() ([]model.Todo, error) {
 	path := filepath.Join(s.basePath, TodosFile)
     if _, err := os.Stat(path); os.IsNotExist(err) {
-        return []model.Todo{}, nil
+        // Seed default todo
+        defaultTodos := []model.Todo{
+            {
+                ID:        "welcome-todo",
+                Content:   "Try creating a new todo (Press 't')",
+                Done:      false,
+                CreatedAt: time.Now(),
+                Frequency: model.Once,
+            },
+        }
+        if err := s.SaveTodos(defaultTodos); err != nil {
+            return nil, err
+        }
+        return defaultTodos, nil
     }
 	data, err := os.ReadFile(path)
 	if err != nil {
