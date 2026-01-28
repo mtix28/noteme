@@ -2,21 +2,29 @@
 
 **NoteMe** is a sleek, keyboard-centric terminal user interface (TUI) application for managing notes and todos. Built with Go and Bubble Tea, it brings the "The Elm Architecture" to your CLI.
 
-![Demo Placeholder](https://via.placeholder.com/800x400?text=NoteMe+Dashboard+Screenshot)
-
 ## Features
 
-*   **📝 Notes:** Create rich text notes with titles and folders.
-*   **✅ Todos:** Manage tasks with recurrence (Daily, Weekly, Monthly).
-*   **📊 Dashboard:** Visual heatmap of your activity and quick stats.
-*   **⌨️ Keyboard First:** Vim-like navigation (`j`/`k`) and efficient shortcuts.
-*   **💾 Local Storage:** Data is safely stored in `~/.noteme/` as JSON.
+*   ** Notes:** Create rich text notes with titles and folders.
+*   ** Todos:** Manage tasks with recurrence (Daily, Weekly, Monthly).
+*   ** Dashboard:** Visual heatmap of your activity and quick stats.
+*   ** Keyboard First:** Vim-like navigation (`j`/`k`) and efficient shortcuts.
+*   ** Local Storage:** Data is safely stored in `~/.noteme/` as JSON.
 
 ## Installation
 
-### From Source
-
 Ensure you have [Go](https://go.dev/dl/) installed (1.19+ recommended).
+
+### Using go install (Recommended)
+
+You can install `noteme` directly from GitHub:
+
+```bash
+go install github.com/yourusername/noteme@latest
+```
+
+This will compile the binary and place it in your `$GOPATH/bin` (usually `~/go/bin`). Ensure this directory is in your system's `PATH`.
+
+### From Source
 
 ```bash
 git clone https://github.com/yourusername/noteme.git
