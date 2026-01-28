@@ -408,10 +408,6 @@ func (m MainModel) renderDashboard() string {
         )
     }
 
-    // Heatmap (Simulated based on counts for now, normally would process dates)
-    // We'll create a simple row of blocks representing "Recent Activity"
-    heatmap := m.renderHeatmap()
-
     // Status / Stats
     stats := fmt.Sprintf(
         "%s %s    %s %s    %s %s",
@@ -422,58 +418,25 @@ func (m MainModel) renderDashboard() string {
     
     statusSection := cardStyle.Width(m.width - 6).Render(
         lipgloss.JoinVertical(lipgloss.Center,
-            lipgloss.NewStyle().Bold(true).Foreground(primaryColor).Render("Activity & Status"),
-            "\n",
-            heatmap,
+            lipgloss.NewStyle().Bold(true).Foreground(primaryColor).Render("Status Overview"),
             "\n",
             stats,
         ),
     )
+    
+    // Navigation Hint
+    navHint := lipgloss.NewStyle().
+        Foreground(textColor).
+        Background(subtleColor).
+        Padding(0, 1).
+        MarginTop(1).
+        Render("PRESS [TAB] TO SWITCH LISTS")
 
     return lipgloss.JoinVertical(lipgloss.Left,
         header,
         statusSection,
+        lipgloss.PlaceHorizontal(m.width - 6, lipgloss.Center, navHint),
     )
-}
-
-func (m MainModel) renderHeatmap() string {
-    // Generate a simple visualization.
-    // In a real app, this would bucket timestamps.
-    // Here we'll just show a "GitHub-like" strip of days, colored randomly or based on recent items for effect.
-    
-    // Let's look at the last 7 days.
-    blocks := []string{}
-    now := time.Now()
-    
-    for i := 6; i >= 0; i-- {
-        day := now.AddDate(0, 0, -i)
-        count := 0
-        
-        // Count items for this day
-        dateStr := day.Format("2006-01-02")
-        for _, n := range m.notes {
-            if n.CreatedAt.Format("2006-01-02") == dateStr { count++ }
-        }
-        for _, t := range m.todos {
-            if t.CreatedAt.Format("2006-01-02") == dateStr { count++ }
-        }
-        
-        color := heatLevel0
-        if count > 0 { color = heatLevel1 }
-        if count > 2 { color = heatLevel2 }
-        if count > 5 { color = heatLevel3 }
-        if count > 8 { color = heatLevel4 }
-        
-        block := lipgloss.NewStyle().
-            Background(color).
-            Padding(0, 1).
-            MarginRight(1).
-            Render(" ")
-        
-        blocks = append(blocks, block)
-    }
-    
-    return lipgloss.JoinHorizontal(lipgloss.Left, blocks...)
 }
 
 func timeOfDay() string {
