@@ -4,11 +4,11 @@
 
 ## Features
 
-*   ** Notes:** Create rich text notes with titles and folders.
-*   ** Todos:** Manage tasks with recurrence (Daily, Weekly, Monthly).
-*   ** Dashboard:** Visual heatmap of your activity and quick stats.
-*   ** Keyboard First:** Vim-like navigation (`j`/`k`) and efficient shortcuts.
-*   ** Local Storage:** Data is safely stored in `~/.noteme/` as JSON.
+*   **Notes:** Create rich text notes with titles and folders.
+*   **Todos:** Manage tasks with recurrence (Daily, Weekly, Monthly).
+*   **Dashboard:** Visual heatmap of your activity and quick stats.
+*   **Keyboard First:** Vim-like navigation (`j`/`k`) and efficient shortcuts.
+*   **Local Storage:** Data is safely stored in `~/.noteme/` as JSON.
 
 ## Installation
 
