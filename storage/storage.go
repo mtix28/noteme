@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"time"
-	"noteme/model"
+	"github.com/mtix28/noteme/model"
 )
 
 const (

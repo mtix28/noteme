@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"noteme/model"
-	"noteme/storage"
+	"github.com/mtix28/noteme/model"
+	"github.com/mtix28/noteme/storage"
 )
 
 func setupTestStorage(t *testing.T) (*storage.Storage, string) {
